@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row align-items-center my-3" *ngFor="let post of hotPosts">
+    <div class="post-vote-box">
+      <button type="button" class="btn btn-link post-vote-button">▲</button>
+      <div class="post-votes-number">
+        <span>
+          {{ post.votes }}
+        </span>
+      </div>
+      <button type="button" class="btn btn-link post-vote-button">▼</button>
+    </div>
+    <div class="post-thumbnail-box">
+      <img class="post-thumbnail" src="{{post.thumbnail}}" />
+    </div>
+    <div class="post-preview-box">
+      <h4 class="post-title">
+        <a href="#">
+          {{ post.title }}
+        </a>
+      </h4>
+      <div class="post-meta">
+        <a href="#">
+          {{ post.totalComments }} comments
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
