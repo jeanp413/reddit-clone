@@ -15,7 +15,20 @@ export class PostsService {
 
   getHotPosts(): Observable<PostPreview[]> {
     // return this.http.get<Dish[]>(this.baseURL + 'dishes');
-    return Observable.of(HOTPOSTS.sort((a, b) => (b.votes - a.votes))).delay(1000);
+    let newPostArray = HOTPOSTS.map(p => ({ ...p }));
+    newPostArray.sort((a, b) => (b.votes - a.votes))
+    return Observable.of(newPostArray).delay(1000);
+  }
+
+  updatePostVote(postId: number, updatedVotes: number): Observable<PostPreview> {
+    const idx = HOTPOSTS.findIndex(post => post.id === postId);
+    const post = HOTPOSTS[idx];
+    let updatedPost = {
+      ...post,
+      votes: updatedVotes
+    }
+    HOTPOSTS[idx] = updatedPost;
+    return Observable.of(updatedPost).delay(1000);
   }
 
 };

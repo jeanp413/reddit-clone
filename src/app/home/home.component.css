@@ -41,6 +41,19 @@
   text-decoration: none;
 }
 
+.post-text {
+  margin-bottom: 0.2rem;
+  max-width: 50em;
+  max-height: 2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-meta {
+  font-size: 0.7em;
+}
+
 .post-meta, .post-meta a {
   color: #888888;
 }
