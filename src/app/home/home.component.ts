@@ -22,32 +22,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  upvotePost(postId: number) {
+  updateVote(postId: number, type: string) {
     if (this.pendingRequest) {
       return;
     }
 
-    this.pendingRequest = true;
+    const value = ({ upvote: 1, downvote: -1 })[type];
     const idx = this.hotPosts.findIndex(p => p.id === postId);
     const post = this.hotPosts[idx];
-    this.postsService.updatePostVote(post.id, post.votes + 1)
-      .subscribe(updatedPost => {
-        this.hotPosts[idx] = updatedPost;
-        this.pendingRequest = false;
-      });
-  }
-
-  downvotePost(postId: number) {
-    if (this.pendingRequest) {
-      return;
-    }
 
     this.pendingRequest = true;
-    const idx = this.hotPosts.findIndex(p => p.id === postId);
-    const post = this.hotPosts[idx];
-    this.postsService.updatePostVote(post.id, post.votes - 1)
+    this.postsService.updatePostVote(post.id, post.votes + value)
       .subscribe(updatedPost => {
         this.hotPosts[idx] = updatedPost;
+        this.hotPosts.sort((a, b) => (b.votes - a.votes));
         this.pendingRequest = false;
       });
   }

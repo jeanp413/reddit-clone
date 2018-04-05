@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row align-items-center my-3" *ngFor="let post of hotPosts">
     <div class="post-vote-box">
-      <button type="button" class="btn btn-link post-vote-button" (click)="upvotePost(post.id)">▲</button>
+      <button type="button" class="btn btn-link post-vote-button" (click)="updateVote(post.id, 'upvote')">▲</button>
       <div class="post-votes-number">
         <span>
           {{ post.votes }}
         </span>
       </div>
-      <button type="button" class="btn btn-link post-vote-button" (click)="downvotePost(post.id)">▼</button>
+      <button type="button" class="btn btn-link post-vote-button" (click)="updateVote(post.id, 'downvote')">▼</button>
     </div>
     <div class="post-thumbnail-box">
       <img class="post-thumbnail" src="{{post.thumbnail}}" />
