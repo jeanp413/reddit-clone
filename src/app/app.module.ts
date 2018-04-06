@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
+import { CommentComponent } from './comment/comment.component';
 
 import { PostsService } from './services/posts.service';
 
@@ -22,7 +23,8 @@ import { PostsService } from './services/posts.service';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    PostComponent
+    PostComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

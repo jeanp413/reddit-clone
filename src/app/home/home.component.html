@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row align-items-center my-3" *ngFor="let post of hotPosts">
+  <div class="d-flex align-items-center my-2" *ngFor="let post of hotPosts">
     <div class="post-vote-box">
       <button type="button" class="btn btn-link post-vote-button" (click)="updateVote(post.id, 'upvote')">▲</button>
       <div class="post-votes-number">
@@ -9,20 +9,20 @@
       </div>
       <button type="button" class="btn btn-link post-vote-button" (click)="updateVote(post.id, 'downvote')">▼</button>
     </div>
+
     <div class="post-thumbnail-box">
       <img class="post-thumbnail" src="{{post.thumbnail}}" />
     </div>
+
     <div class="post-preview-box">
       <h4 class="post-title">
-        <a href="#">
+        <a [routerLink]="['/post', post.id]">
           {{ post.title }}
         </a>
       </h4>
-      <p class="post-text">
-        {{ post.text }}
-      </p>
+      <p class="post-text-preview">{{ post.text }}</p>
       <div class="post-meta">
-        <a href="#">
+        <a [routerLink]="['/post', post.id]">
           {{ post.totalComments }} comments
         </a>
       </div>

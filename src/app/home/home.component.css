@@ -1,59 +1,8 @@
-.post-vote-box {
-  width: 50px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 7px;
-}
-
-.post-vote-box button{
-  color: black;
-}
-
-.post-vote-box button:hover{
-  text-decoration: none;
-  color: black;
-}
-
-.post-vote-box button:focus{
-  text-decoration: none;
-}
-
-.post-vote-button {
- padding: 0px;
- border: 0px;
-}
-
-.post-votes-number {
-  text-align: center;
-}
-
-.post-thumbnail-box {
- margin-right: 5px;
-}
-
-.post-thumbnail {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-}
-
-.post-title a:hover{
-  text-decoration: none;
-}
-
-.post-text {
+.post-text-preview {
   margin-bottom: 0.2rem;
   max-width: 50em;
   max-height: 2em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.post-meta {
-  font-size: 0.7em;
-}
-
-.post-meta, .post-meta a {
-  color: #888888;
 }

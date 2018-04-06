@@ -1,0 +1,10 @@
+.post-text {
+  margin-bottom: 0.2rem;
+  max-width: 50em;
+  white-space: pre-line;
+}
+
+.comment-title-box {
+  border-bottom: 1px dotted gray;
+  margin-bottom: 0.5rem;
+}

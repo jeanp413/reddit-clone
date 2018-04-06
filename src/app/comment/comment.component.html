@@ -1,0 +1,24 @@
+<div class="d-flex flex-column my-2" [style.margin-left.rem]="comment.depth > 0 ? 1.2 : 0">
+  <div class="d-flex align-items-start">
+    <div class="post-vote-box">
+      <button type="button" class="btn btn-link post-vote-button" (click)="handleVoteComment('upvote')">▲</button>
+      <div class="post-votes-number">
+        <span>
+          {{ comment.votes }}
+        </span>
+      </div>
+      <button type="button" class="btn btn-link post-vote-button" (click)="handleVoteComment('downvote')">▼</button>
+    </div>
+
+    <div class="post-preview-box">
+      <p class="comment-text">{{ comment.text }}</p>
+      <!-- <div class="post-meta">
+      <a [routerLink]="['/post', post.id]">
+        {{ comment.totalChildren }} comments
+      </a>
+    </div> -->
+    </div>
+  </div>
+  <app-comment *ngFor="let childComment of comment.children" [comment]="childComment">
+  </app-comment>
+</div>
