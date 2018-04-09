@@ -25,11 +25,19 @@ class CommentSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     age = serializers.IntegerField(source='getAge', read_only=True)
     totalComments = serializers.IntegerField(source='getAllCommentsCount', read_only=True)
-    comments = CommentSerializer(many=True, read_only=True)
+    comments = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = ('id', 'title', 'text', 'thumbnail', 'votes', 'age', 'totalComments', 'comments')
+
+    def get_comments(self, obj):
+        """ self referral field """
+        serializer = CommentSerializer(
+            instance=obj.comments.filter(depth=0),
+            many=True
+        )
+        return serializer.data
 
 
 """

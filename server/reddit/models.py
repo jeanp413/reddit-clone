@@ -9,10 +9,10 @@ class Post(models.Model):
     text = models.CharField(max_length=CONSTANTS.MAX_POST_TEXT_LEN)
     thumbnail = models.URLField(max_length=CONSTANTS.MAX_LINK_LEN, blank=True)
 
-    votes = models.IntegerField(default=0,null=False)
-    
+    votes = models.IntegerField(default=0, blank=True)
+
     created_on = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         ordering = ['-votes']
 
@@ -21,7 +21,7 @@ class Post(models.Model):
 
     def getAllComments(self):
         commentList = []
-        for c in self.comments.all():
+        for c in self.comments.filter(depth=0):
             _l = c.getAllChildren(include_self=True)
             if len(_l) > 0:
                 commentList.extend(_l)
@@ -37,7 +37,7 @@ class Post(models.Model):
         comment = Comment(post=self, text=comment_text, parent=comment_parent)
         comment.save()
         return comment
-    
+
     def vote(self, type):
         value = {'upvote':1, 'downvote':-1}[type]
         self.votes += value
@@ -46,13 +46,13 @@ class Post(models.Model):
 class Comment(models.Model):
     text = models.CharField(max_length=CONSTANTS.MAX_POST_TEXT_LEN)
 
-    votes = models.IntegerField(default=0, null=False)
-    post = models.ForeignKey(Post, null=False, related_name='comments', on_delete=models.CASCADE)
+    votes = models.IntegerField(default=0, blank=True)
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     parent = models.ForeignKey('self', null=True, related_name='children',on_delete=models.CASCADE)
-    depth = models.IntegerField(default=0, blank=True, null=False)
-    
+    depth = models.IntegerField(default=0, blank=True)
+
     created_on = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         ordering = ['-votes']
 
