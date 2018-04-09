@@ -44,7 +44,7 @@ class Post(models.Model):
         self.save()
 
 class Comment(models.Model):
-    text = models.CharField(max_length=CONSTANTS.MAX_POST_TEXT_LEN)
+    text = models.CharField(max_length=CONSTANTS.MAX_COMMENT_TEXT_LEN)
 
     votes = models.IntegerField(default=0, blank=True)
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
