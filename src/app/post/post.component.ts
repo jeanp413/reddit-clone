@@ -41,11 +41,11 @@ export class PostComponent implements OnInit {
       return;
     }
 
-    const value = ({ upvote: 1, downvote: -1 })[type];
+    // const value = ({ upvote: 1, downvote: -1 })[type];
     const post = this.post;
 
     this.pendingRequest = true;
-    this.postsService.updatePostVote(post.id, post.votes + value)
+    this.postsService.updateVotePost(post.id, type)
       .subscribe(updatedPostPreview => {
         const updatedPost = {
           ...post,
@@ -76,11 +76,11 @@ export class PostComponent implements OnInit {
       return;
     }
 
-    const value = ({ upvote: 1, downvote: -1 })[type];
+    // const value = ({ upvote: 1, downvote: -1 })[type];
     const comment = this.findComment(commentId, this.post.comments);
 
     this.pendingRequest = true;
-    this.postsService.updateCommentVote(comment.id, comment.votes + value)
+    this.postsService.updateVoteComment(comment.id, type)
       .subscribe(updatedCommentPreview => {
         // TODO: think this is ok, nonetheless check
         // https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html

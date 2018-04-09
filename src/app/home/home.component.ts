@@ -27,12 +27,12 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    const value = ({ upvote: 1, downvote: -1 })[type];
+    // const value = ({ upvote: 1, downvote: -1 })[type];
     const idx = this.hotPosts.findIndex(p => p.id === postId);
     const post = this.hotPosts[idx];
 
     this.pendingRequest = true;
-    this.postsService.updatePostVote(post.id, post.votes + value)
+    this.postsService.updateVotePost(post.id, type)
       .subscribe(updatedPost => {
         this.hotPosts[idx] = updatedPost;
         this.hotPosts.sort((a, b) => (b.votes - a.votes));
