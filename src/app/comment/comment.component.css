@@ -3,3 +3,12 @@
   max-width: 50em;
   white-space: pre-line;
 }
+
+.comment-meta {
+  margin-left: 50px;
+}
+
+.comment-meta, .comment-meta button {
+  font-size: 0.9em;
+  line-height: 0.9em;
+}

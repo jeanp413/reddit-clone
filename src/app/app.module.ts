@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
 import { PostFormComponent } from './post-form/post-form.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
 
 import { PostsService } from './services/posts.service';
 
@@ -26,7 +27,8 @@ import { PostsService } from './services/posts.service';
     HomeComponent,
     PostComponent,
     CommentComponent,
-    PostFormComponent
+    PostFormComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,

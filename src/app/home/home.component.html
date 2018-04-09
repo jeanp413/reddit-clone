@@ -3,9 +3,7 @@
     <div class="post-vote-box">
       <button type="button" class="btn btn-link post-vote-button" (click)="updateVote(post.id, 'upvote')">▲</button>
       <div class="post-votes-number">
-        <span>
-          {{ post.votes }}
-        </span>
+        <span>{{ post.votes }}</span>
       </div>
       <button type="button" class="btn btn-link post-vote-button" (click)="updateVote(post.id, 'downvote')">▼</button>
     </div>

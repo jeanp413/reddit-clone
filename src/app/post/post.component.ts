@@ -16,6 +16,7 @@ import { CommentVotingService } from '../services/comment-voting.service';
 })
 export class PostComponent implements OnInit {
   post: Post;
+  showNewCommentForm: boolean = false;
   pendingRequest: boolean = false;
 
   constructor(
@@ -89,6 +90,19 @@ export class PostComponent implements OnInit {
         container.sort((a, b) => (b.votes - a.votes));
         this.pendingRequest = false;
       });
+  }
+
+  handleShowCommentForm(visible: boolean) {
+    this.showNewCommentForm = visible;
+  }
+
+  handleCommentSubmitedSuccess(newCommentPreview: CommentPreview) {
+    const newComment: Comment = {
+      ...newCommentPreview,
+      children: []
+    };
+    this.post.comments.push(newComment);
+    this.handleShowCommentForm(false);
   }
 
 }

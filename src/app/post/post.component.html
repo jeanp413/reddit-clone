@@ -32,6 +32,9 @@
   <div class="d-flex flex-column my-2">
     <div class="comment-title-box">
       <h5>Comments</h5>
+      <button type="button" class="btn btn-link btn-sm p-0 b-0" (click)="handleShowCommentForm(true)">Add Comment</button>
+      <app-comment-form [postId]="post.id" [parentId]="null" (onCancelClicked)="handleShowCommentForm(false)" (onCommentSubmitedSuccess)="handleCommentSubmitedSuccess($event)"
+        *ngIf="showNewCommentForm"></app-comment-form>
     </div>
 
     <app-comment *ngFor="let comment of post.comments" [comment]="comment">

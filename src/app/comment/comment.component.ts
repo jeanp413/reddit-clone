@@ -12,6 +12,11 @@ import { CommentVotingService } from '../services/comment-voting.service';
 })
 export class CommentComponent {
   @Input() comment: Comment;
+  showNewCommentForm: boolean = false;
+  showChildren: boolean = true;
+
+  // TODO: update totalChildren and totalComments values when the new comment
+  // is received from server
 
   constructor(
     private commentVotingService: CommentVotingService
@@ -21,4 +26,20 @@ export class CommentComponent {
     this.commentVotingService.emitCommentVote({ commentId: this.comment.id, type });
   }
 
+  handleShowCommentForm(visible: boolean) {
+    this.showNewCommentForm = visible;
+  }
+
+  handleCommentSubmitedSuccess(newCommentPreview: CommentPreview) {
+    const newComment: Comment = {
+      ...newCommentPreview,
+      children: []
+    };
+    this.comment.children.push(newComment);
+    this.handleShowCommentForm(false);
+  }
+
+  handleShowChildrenClicked() {
+    this.showChildren = !this.showChildren;
+  }
 }

@@ -1,24 +1,29 @@
 <div class="d-flex flex-column my-2" [style.margin-left.rem]="comment.depth > 0 ? 1.2 : 0">
-  <div class="d-flex align-items-start">
-    <div class="post-vote-box">
-      <button type="button" class="btn btn-link post-vote-button" (click)="handleVoteComment('upvote')">▲</button>
-      <div class="post-votes-number">
-        <span>
-          {{ comment.votes }}
-        </span>
+  <div class="d-flex flex-column">
+    <div class="d-flex align-items-start">
+      <div class="post-vote-box">
+        <button type="button" class="btn btn-link post-vote-button" (click)="handleVoteComment('upvote')">▲</button>
+        <div class="post-votes-number">
+          <span>{{ comment.votes }}</span>
+        </div>
+        <button type="button" class="btn btn-link post-vote-button" (click)="handleVoteComment('downvote')">▼</button>
       </div>
-      <button type="button" class="btn btn-link post-vote-button" (click)="handleVoteComment('downvote')">▼</button>
+
+      <div class="post-preview-box">
+        <p class="comment-text">{{ comment.text }}</p>
+      </div>
+    </div>
+    <div class="comment-meta">
+      <button type="button" class="btn btn-link p-0 b-0" (click)="handleShowCommentForm(true)">Respond</button>
+      <span>|</span>
+      <button type="button" class="btn btn-link p-0 b-0" [disabled]="comment.totalChildren<=0" (click)="handleShowChildrenClicked()">{{ showChildren ? 'Hide Comments': 'Show '+ comment.totalChildren +' Comments' }}</button>
     </div>
 
-    <div class="post-preview-box">
-      <p class="comment-text">{{ comment.text }}</p>
-      <!-- <div class="post-meta">
-      <a [routerLink]="['/post', post.id]">
-        {{ comment.totalChildren }} comments
-      </a>
-    </div> -->
-    </div>
+    <app-comment-form [postId]="comment.post" [parentId]="comment.id" (onCancelClicked)="handleShowCommentForm(false)" (onCommentSubmitedSuccess)="handleCommentSubmitedSuccess($event)"
+      *ngIf="showNewCommentForm"></app-comment-form>
   </div>
-  <app-comment *ngFor="let childComment of comment.children" [comment]="childComment">
-  </app-comment>
+
+  <div *ngIf="showChildren">
+    <app-comment *ngFor="let childComment of comment.children" [comment]="childComment"></app-comment>
+  </div>
 </div>

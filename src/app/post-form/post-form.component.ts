@@ -38,29 +38,8 @@ export class PostFormComponent implements OnInit {
       text: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
     });
 
-    this.newPostForm.valueChanges
-      .subscribe(data => this.onValueChanged(data));
-
-    this.onValueChanged(); // (re)set form validation messages
-  }
-
-  onValueChanged(data?: any) {
-    // if (!this.newPostForm)
-    //   return;
-
-    // const form = this.newPostForm;
-    // for (const field in this.formErrors) {
-    //   this.formErrors[field] = '';
-
-    //   const control = form.get(field);
-    //   if (control && control.dirty && control.invalid) {
-    //     const messages = this.validationMessages[field];
-
-    //     for (const key in control.errors) {
-    //       this.formErrors[field] += messages[key] + ' ';
-    //     }
-    //   }
-    // }
+    // this.newPostForm.valueChanges
+    //   .subscribe(data => this.onValueChanged(data));
   }
 
   onSubmit() {
@@ -74,6 +53,7 @@ export class PostFormComponent implements OnInit {
     this.pendingRequest = true;
     this.postsService.addNewPost(newPostData)
       .subscribe(newPost => {
+        this.pendingRequest = false;
         this.goBack();
       });
 

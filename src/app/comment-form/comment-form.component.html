@@ -1,0 +1,14 @@
+<div class="d-flex flex-column flex-column my-2">
+  <p>{{newCommentForm.value | json}}</p>
+  <p>{{newCommentForm.status | json}}</p>
+  <form class="d-flex flex-column" novalidate [formGroup]="newCommentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <textarea class="form-control" id="commentText" formControlName="text" rows="3" placeholder="New comment content"></textarea>
+    </div>
+
+    <div class="text-right">
+      <button class="btn btn-primary btn-sm" type="submit" [disabled]="newCommentForm.invalid">Submit</button>
+      <button class="btn btn-danger btn-sm" type="button" (click)="handleCancelClicked()">Cancel</button>
+    </div>
+  </form>
+</div>
