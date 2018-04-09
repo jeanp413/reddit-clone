@@ -1,4 +1,7 @@
 {
     "editor.tabSize": 2,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "python.pythonPath": "${workspaceFolder}/server/.env/bin/python",
+    "python.linting.enabled": false,
+    "tslint.enable": false,
 }

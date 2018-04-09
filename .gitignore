@@ -8,6 +8,7 @@
 
 # dependencies
 /node_modules
+/server/.env
 
 # IDEs and editors
 /.idea
@@ -34,6 +35,10 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+
+# python
+*.py[co]
+__pycache__/
 
 # e2e
 /e2e/*.js
