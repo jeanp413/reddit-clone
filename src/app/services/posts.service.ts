@@ -85,4 +85,14 @@ export class PostsService {
 
     return this.http.post<PostPreview>('api/vote/', { "target": "comment", id, type }, httpOptions);
   }
+
+  addNewPost(newPostData: any): Observable<PostPreview> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.post<PostPreview>('api/posts/', newPostData, httpOptions);
+  }
 }

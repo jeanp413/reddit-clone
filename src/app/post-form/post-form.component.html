@@ -1,0 +1,28 @@
+<div class="d-flex container justify-content-center align-items-center h-100">
+  <div class="d-flex flex-column col-md-8">
+    <h2>Add New Post</h2>
+    <p>{{newPostForm.value | json}}</p>
+    <p>{{newPostForm.status | json}}</p>
+    <form class="d-flex flex-column" novalidate [formGroup]="newPostForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="postTitle">Title</label>
+        <input type="text" class="form-control" id="postTitle" formControlName="title" placeholder="New post title">
+      </div>
+
+      <div class="form-group">
+        <label for="postThumbnail">Thumbnail</label>
+        <input type="url" class="form-control" id="postThumbnail" formControlName="thumbnail" placeholder="New post thumbnail">
+      </div>
+
+      <div class="form-group">
+        <label for="postText">Content</label>
+        <textarea class="form-control" id="postText" formControlName="text" rows="5" placeholder="New post content"></textarea>
+      </div>
+
+      <div class="text-right">
+        <button class="btn btn-primary" type="submit" [disabled]="newPostForm.invalid">Submit</button>
+        <a class="btn btn-danger" (click)="goBack()">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

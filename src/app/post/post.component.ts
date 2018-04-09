@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
   constructor(
     private postsService: PostsService,
     private commentVotingService: CommentVotingService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     commentVotingService.commentVoteDispatched$.subscribe(
       voteEvent => this.updateVoteComment(voteEvent.commentId, voteEvent.type)
@@ -56,15 +56,15 @@ export class PostComponent implements OnInit {
       });
   }
 
-  private findComment(commentId: number, comments: Comment[]): Comment {
+  private findComment(commentId: number, comments: Comment[]): { comment: Comment, container: Comment[] } {
     for (const c of comments) {
       if (c.id === commentId) {
-        return c;
+        return { comment: c, container: comments };
       }
 
-      const comment = this.findComment(commentId, c.children);
-      if (comment) {
-        return comment;
+      const obj = this.findComment(commentId, c.children);
+      if (obj) {
+        return obj;
       }
     }
 
@@ -77,7 +77,7 @@ export class PostComponent implements OnInit {
     }
 
     // const value = ({ upvote: 1, downvote: -1 })[type];
-    const comment = this.findComment(commentId, this.post.comments);
+    const { comment, container } = this.findComment(commentId, this.post.comments);
 
     this.pendingRequest = true;
     this.postsService.updateVoteComment(comment.id, type)
@@ -86,6 +86,7 @@ export class PostComponent implements OnInit {
         // https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
         // or google "angular change detection"
         comment.votes = updatedCommentPreview.votes;
+        container.sort((a, b) => (b.votes - a.votes));
         this.pendingRequest = false;
       });
   }

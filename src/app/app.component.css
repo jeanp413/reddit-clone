@@ -9,6 +9,10 @@ app-home, app-post {
   width: 70%;
 }
 
+app-post-form {
+  width: 100%;
+}
+
 .post-vote-box {
   width: 50px;
   display: flex;
